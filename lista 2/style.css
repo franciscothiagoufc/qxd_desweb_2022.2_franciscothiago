@@ -1,0 +1,105 @@
+/* Geral */
+body{
+	color : rgb(15, 20, 25);		
+	background-color : white;
+}
+
+/* Navegação e Publicações */
+
+nav li,section#publicacoes a{
+	list-style-type : none;
+	padding : 10px 10px;
+}
+
+nav li:hover , section#publicacoes a:hover{
+	border-radius: 50px;
+	background-color : rgba(15, 25, 20, 0.1);
+}
+
+nav ul{
+	padding-left : 0;
+}
+
+nav a,section#publicacoes a{
+	color : rgb(15, 20, 25);
+	text-decoration : none;
+}
+
+/* Estatística */
+
+section#estatisticas ul li{
+	list-style-type : none;
+	display : inline;
+	font-weight : bold;
+	color : rgb(15, 20, 25);
+}
+
+section#estatisticas ul li a{
+	font-weight : normal;
+	color : rgb(83, 100, 113);
+}
+
+section#estatisticas ul li a:hover{
+	text-decoration : underline;
+}
+
+/* Ações */
+
+section.acoes{
+	padding : 5px;
+}
+
+section.acoes a{
+	color : rgb(15, 20, 25);
+	padding : 7px;
+	border-radius: 10px;
+}
+
+section.acoes a:nth-child(1):hover{
+	background-color : rgba(29, 155, 240, 0.1);
+	color : rgba(29, 155, 240, 1);	
+}
+
+section.acoes a:nth-child(4):hover{
+	background-color : rgba(29, 155, 240, 0.1);
+	color : rgba(29, 155, 240, 1);	
+}
+
+section.acoes a:nth-child(2):hover{
+	background-color : rgba(0, 186, 124, 0.1);
+	color : rgba(0, 186, 124, 1);	
+}
+
+section.acoes a:nth-child(3):hover{
+	background-color : rgba(249, 24, 128, 0.1);
+	color : rgba(249, 24, 128, 1);	
+}
+
+/* Restante do texto */
+
+.tzeet:hover{
+	background-color : rgba(0, 0, 0, 0.03);
+}
+h4{
+	color : rgb(15, 20, 25);
+}
+
+h5{
+	color : rgb(83, 100, 113);
+}
+
+h5 ~ p{
+	color : rgb(15, 20, 25);
+}
+
+p.tzeet{
+	color : rgb(15, 20, 25);
+}
+
+p.tzeet span:nth-child(3){
+	color : rgb(83, 100, 113);
+}
+
+p.tzeet span:nth-child(2){
+	color : rgb(15, 20, 25);
+}
