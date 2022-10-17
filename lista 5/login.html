@@ -20,28 +20,31 @@
                                 <h6 >Entre no tzeet agora mesmo</h5>
                                 <form>
                                     <div class="form-floating mb-2">
-                                        <input type="email" class="form-control" id="input-email" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="input-email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                                         <label for="input-email">Email</label>
+                                        <div class="invalid-feedback">
+                                            As senhas não conferem.
+                                        </div>
                                     </div>
                                     <div class="form-floating mb-2">
                                         <input type="password" class="form-control" id="input-pass" placeholder="Pass" required>
                                         <label for="input-email">Password</label>
+                                        <div class="invalid-feedback">
+                                            As senhas não conferem.
+                                        </div>
                                     </div>
                                     <p><a href="#">Esqueceu a senha</a></p>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary w-100">Entrar</button>
-                                <p>Não tem uma conta? <a href="#">Increva-se</a></p>
+                                <button type="button" id="btn-login" class="btn btn-primary w-100">Entrar</button>
+                                <p>Não tem uma conta? <a href="signup.html">Increva-se</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            let modal = new bootstrap.Modal('#modal-login')
-            modal.show()
-        </script>
+        <script src="scripts/login.js"></script>
     </body>
 </html>
