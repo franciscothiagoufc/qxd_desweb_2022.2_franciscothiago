@@ -62,25 +62,14 @@ function initDate(day,mounth,year)
 
 function updateDate(day,mounth,year)
 {
-    let limit;
-    let y = year.options[year.selectedIndex].value;
-    let m = mounth.selectedIndex;
-    if(m == 2)
-    {
-        limit = y % 4 == 0 ? 29 : 28;
-    }
-    else if(m in [1,3,5,7,8,10,12])
-    {
-        limit = 31;
-    }
-    else
-    {
-        limit = 30;
-    }
-
+    //Atualizando dia
     let tmp = day.selectedIndex;
-
-    day.innerHTML = "";
+    day.innerHTML = ""; 
+    let d = document.createElement("option");
+    d.value=0;
+    day.add(d);
+    let m = mounth.selectedIndex;
+    let limit = m == 2 ? 29 : 31;
     for(let i = 1; i <= limit ;i++)
     {
         let d = document.createElement("option");
@@ -88,12 +77,36 @@ function updateDate(day,mounth,year)
         d.value =  i;
         day.add(d);
     }
-    let d = document.createElement("option");
-    d.selected = true;
-    d.value=0;
-    day.add(d);
-    
-    day.selectedIndex = tmp;
+    day.selectedIndex=tmp;
+    //Atualizando ano
+    tmp = year.selectedIndex;
+    year.innerHTML="";
+    let y = document.createElement("option");
+    y.value =  0;
+    year.add(y);
+    let date = new Date();
+    console.log(day.selectedIndex);
+    for(let i=1900; i <= date.getFullYear(); i++)
+    {  
+        if(m == 2 && day.selectedIndex == 29)
+        {
+            if(i % 4 == 0)
+            {
+                let y = document.createElement("option");
+                y.text = i;
+                y.value =  i;
+                year.add(y);
+            }
+        }
+        else
+        {
+            let y = document.createElement("option");
+            y.text = i;
+            y.value =  i;
+            year.add(y);
+        }
+    }
+    year.selectedIndex=tmp;
 }
 
 function checkDate(day,mounth,year)
@@ -138,17 +151,35 @@ function checkDate(day,mounth,year)
 
 function checkTerms(terms)
 {
-    if(terms.checked)
-        return true;
-    return false;
+    let result = terms.checked
+    return result;
+
 }
 
-function check(email,pass,checkpass,day,mounth,year,notify,terms)
+function checkName(name)
+{
+    let result = false;
+    if(name.value.length>0)
+        result = true;
+    if(result)
+    {
+        name.classList.remove("is-invalid");
+        name.classList.add("is-valid");
+    }
+    else
+    {
+        name.classList.remove("is-valid");
+        name.classList.add("is-invalid");
+    }
+    return result;
+}
+
+function check(email,pass,checkpass,day,mounth,year,notify,terms,name)
 {
     let btn = document.getElementById("btn-signup");
-    let valid = [updateEmail(email),updatePass(pass,checkpass),checkDate(day,mounth,year),checkTerms(terms)]
-    console.log(valid , [true,true,true,true])
-    if(valid[0] && valid[1] && valid[2] && valid[3])
+    let valid = [updateEmail(email),updatePass(pass,checkpass),checkDate(day,mounth,year),checkTerms(terms),checkName(name)]
+    console.log(valid , [true,true,true,true,true])
+    if(valid[0] && valid[1] && valid[2] && valid[3] && valid[4])
     {
         btn.className = "btn btn-primary w-100";
     }
@@ -164,6 +195,7 @@ modal.show();
 let email = document.getElementById("input-email");
 let pass = document.getElementById("input-pass");
 let checkpass = document.getElementById("check-pass");
+let name = document.getElementById("input-nome");
 
 let day = document.getElementById("input-day");
 let mounth = document.getElementById("input-mounth");
@@ -179,11 +211,14 @@ let form = document.getElementById("form-signup");
 //pass.addEventListener("input",(event) => updatePass(pass,checkpass));
 //checkpass.addEventListener("input",(event) => updatePass(pass,checkpass));
 
+day.addEventListener("change",(event) => updateDate(day,mounth,year));
 mounth.addEventListener("change",(event) => updateDate(day,mounth,year));
 year.addEventListener("change",(event) => updateDate(day,mounth,year));
 
-form.addEventListener("change",(event) => check(email,pass,checkpass,day,mounth,year,notify,terms));
+form.addEventListener("change",(event) => check(email,pass,checkpass,day,mounth,year,notify,terms,name));
 
 updateEmail(email);
 updatePass(pass,checkpass);
-initDate(day,mounth,year)
+updateDate(day,mounth,year);
+checkName(name);
+checkDate(day,mounth,year);
