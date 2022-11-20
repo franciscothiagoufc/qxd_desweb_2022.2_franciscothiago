@@ -1,0 +1,25 @@
+div#modal-login img{
+    margin: auto;
+}
+
+div#modal-footer{
+    float: left;
+}
+
+p.invalid span{
+    color: red;
+    display: inline;
+}
+
+/*p#invalid-pass.invalid span{
+    color: red;
+    display: inline;
+}
+
+p#invalid-email.valid span{
+    display: none;
+}*/
+
+p.valid span{
+    color: rgba(1, 1, 1, 0);
+}
